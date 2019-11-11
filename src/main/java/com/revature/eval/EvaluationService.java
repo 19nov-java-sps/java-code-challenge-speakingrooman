@@ -1,5 +1,6 @@
 package com.revature.eval;
 
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,13 @@ public class EvaluationService {
 	 */
 	public String reverse(String string) {
 		// TODO Write an implementation for this method declaration
+		String temp="";
+		if(string!=null) {
+			for(int i=string.length()-1;i>=0;i--) {
+				temp+=string.charAt(i);
+			}
+		return temp;
+		}
 		return null;
 	}
 
@@ -28,6 +36,16 @@ public class EvaluationService {
 	 */
 	public String acronym(String phrase) {
 		// TODO Write an implementation for this method declaration
+		String Acronym="";
+		if(phrase!=null) {
+			Acronym+=phrase.charAt(0);
+			for(int i=0; i< phrase.length();i++) {
+				if(phrase.charAt(i)==' '||phrase.charAt(i)=='-') {
+					Acronym+=phrase.charAt(i+1);
+				}
+			}
+			return Acronym.toUpperCase();
+		}
 		return null;
 	}
 	
@@ -49,7 +67,42 @@ public class EvaluationService {
 	 */
 	public int getScrabbleScore(String string) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		int total=0;
+		string=string.toUpperCase();
+//		if(string.charAt(index))
+		Hashtable<Character,Integer> scores= new  Hashtable<Character,Integer>();
+		scores.put('A', 1);
+		scores.put('E', 1);
+		scores.put('I', 1);
+		scores.put('O', 1);
+		scores.put('U', 1);
+		scores.put('L', 1);
+		scores.put('N', 1);
+		scores.put('R', 1);
+		scores.put('S', 1);
+		scores.put('T', 1);
+		scores.put('D', 2);
+		scores.put('G', 2);
+		scores.put('C', 3);
+		scores.put('M', 3);
+		scores.put('P', 3);
+		scores.put('F', 4);
+		scores.put('H', 4);
+		scores.put('V', 4);
+		scores.put('W', 4);
+		scores.put('Y', 4);
+		scores.put('K', 5);
+		scores.put('J', 8);
+		scores.put('X', 8);
+		scores.put('Q', 10);
+		scores.put('Z', 10);
+		scores.put('B', 3);
+		for(int i=0;i<string.length();i++) {
+			if(scores.containsKey(string.charAt(i))) {
+				total+=scores.get(string.charAt(i));
+			}
+		}
+		return total;
 	}
 	
 	
