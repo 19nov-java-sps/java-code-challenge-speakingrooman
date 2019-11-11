@@ -119,6 +119,19 @@ public class EvaluationService {
 	public Map<String, Integer> wordCount(String string) {
 		// TODO Write an implementation for this method declaration
 		Map< String,Integer> hm = new HashMap< String,Integer>();
+		if(string.contains(",")) {
+			String[] value= string.split(",");
+			
+			for(int i=0;i<value.length;i++) {
+				if(hm.containsKey(value[i])) {
+					hm.put(value[i],hm.get(value[i])+1 );
+				} else {
+				hm.put(value[i], 1);
+				}
+			}
+			return hm;
+		}
+		
 		
 		String[] value= string.split(" ");
 		
@@ -169,9 +182,21 @@ public class EvaluationService {
 	 */
 	static class BinarySearch<T> {
 		private List<T> sortedList;
-
+		
 		public int indexOf(T t) {
 			// TODO Write an implementation for this method declaration
+			int left=0;
+			int middle= (this.sortedList.size()-1)/2;
+			int right=this.sortedList.size()-1;
+			for(int i=left;i < middle;i++) {
+				if(t==this.sortedList.get(i)) {
+					return i;
+				} else {
+					left=middle+1;
+					middle=right;
+				}
+				
+			}
 			
 			return 0;
 		}
