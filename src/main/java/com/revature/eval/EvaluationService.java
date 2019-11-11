@@ -1,5 +1,8 @@
 package com.revature.eval;
 
+
+
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
@@ -180,26 +183,32 @@ public class EvaluationService {
 	 * binary search is a dichotomic divide and conquer search algorithm.
 	 * 
 	 */
-	static class BinarySearch<T> {
-		private List<T> sortedList;
+	static class BinarySearch<T> implements Comparable<BinarySearch<T>>  {
+		private List<T> sortedList ;
 		
 		public int indexOf(T t) {
 			// TODO Write an implementation for this method declaration
 			int left=0;
 			int middle= (this.sortedList.size()-1)/2;
 			int right=this.sortedList.size()-1;
-			for(int i=left;i < middle;i++) {
+			for(int i=left;i <= middle;i++) {
 				if(t==this.sortedList.get(i)) {
 					return i;
 				} else {
 					left=middle+1;
 					middle=right;
 				}
+				//else { right=middle-1; middle=(this.sortedList.size()-1)/2; 
 				
 			}
 			
 			return 0;
+			
+//(Arrays.asList(1, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 634));
+//			assertEquals(9, search.indexOf(144));
+
 		}
+		 
 
 		public BinarySearch(List<T> sortedList) {
 			super();
@@ -212,6 +221,12 @@ public class EvaluationService {
 
 		public void setSortedList(List<T> sortedList) {
 			this.sortedList = sortedList;
+		}
+		@Override
+		public int compareTo(BinarySearch o) {
+			// TODO Auto-generated method stub
+			
+			return 0;
 		}
 
 	}
